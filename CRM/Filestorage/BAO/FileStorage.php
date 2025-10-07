@@ -427,4 +427,38 @@ class CRM_Filestorage_BAO_FileStorage extends CRM_Core_DAO {
 
     return $config;
   }
+
+  /**
+   * Get available storage types
+   *
+   * @return array
+   *   Array of storage types with key => label pairs
+   */
+  public static function getStorageTypes() {
+    return [
+      'local' => E::ts('Local Filesystem'),
+      's3' => E::ts('Amazon S3'),
+      'gcs' => E::ts('Google Cloud Storage'),
+      'azure' => E::ts('Azure Blob Storage'),
+      'digitalocean' => E::ts('DigitalOcean Spaces'),
+    ];
+  }
+
+  /**
+   * Get available operation types
+   *
+   * @return array
+   *   Array of operation types with key => label pairs
+   */
+  public static function getOperationTypes() {
+    return [
+      'upload' => E::ts('Upload'),
+      'download' => E::ts('Download'),
+      'delete' => E::ts('Delete'),
+      'sync' => E::ts('Sync'),
+      'move' => E::ts('Move'),
+      'copy' => E::ts('Copy'),
+    ];
+  }
+
 }

@@ -124,7 +124,7 @@
   <field>
     <name>file_size</name>
     <title>File Size</title>
-    <type>bigint</type>
+    <type>bigint unsigned</type>
     <comment>File size in bytes</comment>
     <html>
       <type>Number</type>
