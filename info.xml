@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<extension key="com.skvare.filestorage" type="module">
+  <file>filestorage</file>
+  <name>File Storage Manager</name>
+  <description>
+    Flexible file storage backend for CiviCRM supporting multiple storage providers
+    including local filesystem, AWS S3, Google Cloud Storage, Azure Blob Storage,
+    and DigitalOcean Spaces. Includes automatic sync via scheduled jobs to catch
+    files that may bypass standard hooks.
+  </description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Sunil Pawar</author>
+    <email>sunil@skvare.com</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/skvare/com.skvare.filestorage</url>
+    <url desc="Documentation">https://github.com/skvare/com.skvare.filestorage/wiki</url>
+    <url desc="Support">https://github.com/skvare/com.skvare.filestorage/issues</url>
+  </urls>
+  <releaseDate>2025-10-07</releaseDate>
+  <version>1.0</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>6.6</ver>
+  </compatibility>
+  <comments>Flexible file storage backende</comments>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
+  <civix>
+    <namespace>CRM/Filestorage</namespace>
+    <format>23.02.1</format>
+    <angularModule>crmFilestorage</angularModule>
+  </civix>
+  <mixins>
+    <mixin>mgd-php@1.0.0</mixin>
+    <mixin>setting-php@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
+    <mixin>menu-xml@1.0.0</mixin>
+    <mixin>entity-types-php@1.0.0</mixin>
+  </mixins>
+</extension>

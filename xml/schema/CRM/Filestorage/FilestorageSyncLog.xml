@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Filestorage</base>
+  <class>FilestorageSyncLog</class>
+  <name>civicrm_filestorage_sync_log</name>
+  <comment>Tracks file storage sync operations for auditing and troubleshooting</comment>
+  <log>false</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>Unique FilestorageSyncLog ID</comment>
+    <html>
+      <type>Number</type>
+    </html>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+
+  <!-- File ID (Foreign Key) -->
+  <field>
+    <name>file_id</name>
+    <title>File ID</title>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>FK to civicrm_file</comment>
+    <html>
+      <type>EntityRef</type>
+      <label>File</label>
+    </html>
+    <add>1.0</add>
+  </field>
+  <foreignKey>
+    <name>file_id</name>
+    <table>civicrm_file</table>
+    <key>id</key>
+    <onDelete>CASCADE</onDelete>
+    <add>1.0</add>
+  </foreignKey>
+
+  <!-- Operation Type -->
+  <field>
+    <name>operation</name>
+    <title>Operation</title>
+    <type>varchar</type>
+    <length>32</length>
+    <required>true</required>
+    <comment>Operation type: upload, download, delete, verify, sync, migrate</comment>
+    <html>
+      <type>Select</type>
+      <label>Operation</label>
+    </html>
+    <pseudoconstant>
+      <callback>CRM_Filestorage_BAO_FileStorage::getOperationTypes</callback>
+    </pseudoconstant>
+    <add>1.0</add>
+  </field>
+
+  <!-- Source Storage -->
+  <field>
+    <name>source_storage</name>
+    <title>Source Storage</title>
+    <type>varchar</type>
+    <length>32</length>
+    <comment>Source storage type</comment>
+    <html>
+      <type>Text</type>
+      <label>Source Storage</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Target Storage -->
+  <field>
+    <name>target_storage</name>
+    <title>Target Storage</title>
+    <type>varchar</type>
+    <length>32</length>
+    <comment>Target storage type</comment>
+    <html>
+      <type>Text</type>
+      <label>Target Storage</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Status -->
+  <field>
+    <name>status</name>
+    <title>Status</title>
+    <type>varchar</type>
+    <length>32</length>
+    <required>true</required>
+    <comment>Operation status: success, failed, skipped</comment>
+    <html>
+      <type>Select</type>
+      <label>Status</label>
+    </html>
+    <pseudoconstant>
+      <callback>CRM_Filestorage_BAO_FileStorage::getStatusTypes</callback>
+    </pseudoconstant>
+    <add>1.0</add>
+  </field>
+
+  <!-- Error Message -->
+  <field>
+    <name>error_message</name>
+    <title>Error Message</title>
+    <type>text</type>
+    <comment>Error details if status is failed</comment>
+    <html>
+      <type>TextArea</type>
+      <rows>4</rows>
+      <cols>60</cols>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- File Size -->
+  <field>
+    <name>file_size</name>
+    <title>File Size</title>
+    <type>bigint</type>
+    <comment>File size in bytes</comment>
+    <html>
+      <type>Number</type>
+      <label>File Size (bytes)</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Duration -->
+  <field>
+    <name>duration_ms</name>
+    <title>Duration (ms)</title>
+    <type>int</type>
+    <comment>Operation duration in milliseconds</comment>
+    <html>
+      <type>Number</type>
+      <label>Duration (ms)</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Sync Date -->
+  <field>
+    <name>sync_date</name>
+    <title>Sync Date</title>
+    <type>datetime</type>
+    <required>true</required>
+    <default>CURRENT_TIMESTAMP</default>
+    <comment>When sync was attempted</comment>
+    <html>
+      <type>Select Date</type>
+      <formatType>activityDateTime</formatType>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Created By (Foreign Key) -->
+  <field>
+    <name>created_by</name>
+    <title>Created By</title>
+    <type>int unsigned</type>
+    <comment>Contact ID who triggered sync</comment>
+    <html>
+      <type>EntityRef</type>
+      <label>Created By</label>
+    </html>
+    <add>1.0</add>
+  </field>
+  <foreignKey>
+    <name>created_by</name>
+    <table>civicrm_contact</table>
+    <key>id</key>
+    <onDelete>SET NULL</onDelete>
+    <add>1.0</add>
+  </foreignKey>
+
+  <!-- Indexes -->
+  <index>
+    <name>idx_file_id</name>
+    <fieldName>file_id</fieldName>
+    <add>1.0</add>
+  </index>
+
+  <index>
+    <name>idx_status</name>
+    <fieldName>status</fieldName>
+    <add>1.0</add>
+  </index>
+
+  <index>
+    <name>idx_sync_date</name>
+    <fieldName>sync_date</fieldName>
+    <add>1.0</add>
+  </index>
+
+</table>

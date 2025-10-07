@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/admin/filestorage/dashboard</path>
+    <page_callback>CRM_Filestorage_Page_Dashboard</page_callback>
+    <title>Dashboard</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/config</path>
+    <page_callback>CRM_Filestorage_Page_Config</page_callback>
+    <title>Config</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/synclog</path>
+    <page_callback>CRM_Filestorage_Page_SyncLog</page_callback>
+    <title>SyncLog</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/test</path>
+    <page_callback>CRM_Filestorage_Page_TestConnection</page_callback>
+    <title>TestConnection</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/browse</path>
+    <page_callback>CRM_Filestorage_Page_FileBrowser</page_callback>
+    <title>FileBrowser</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/help</path>
+    <page_callback>CRM_Filestorage_Page_Help</page_callback>
+    <title>Help</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/settings</path>
+    <page_callback>CRM_Filestorage_Form_Settings</page_callback>
+    <title>Settings</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/config/edit</path>
+    <page_callback>CRM_Filestorage_Form_ConfigEdit</page_callback>
+    <title>ConfigEdit</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/config/delete</path>
+    <page_callback>CRM_Filestorage_Form_ConfigDelete</page_callback>
+    <title>ConfigDelete</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/migrate</path>
+    <page_callback>CRM_Filestorage_Form_Migrate</page_callback>
+    <title>Migrate</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/sync</path>
+    <page_callback>CRM_Filestorage_Form_ManualSync</page_callback>
+    <title>ManualSync</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/admin/filestorage/rules</path>
+    <page_callback>CRM_Filestorage_Form_Rules</page_callback>
+    <title>Rules</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>

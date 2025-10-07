@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Filestorage</base>
+  <class>FilestorageConfig</class>
+  <name>civicrm_filestorage_config</name>
+  <comment>Storage backend configurations for File Storage Manager extension</comment>
+  <log>false</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <title>Storage Config ID</title>
+    <required>true</required>
+    <comment>Unique FilestorageConfig ID</comment>
+    <html>
+      <type>Number</type>
+    </html>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+  <!-- Storage Type -->
+  <field>
+    <name>storage_type</name>
+    <title>Storage Type</title>
+    <type>varchar</type>
+    <length>32</length>
+    <required>true</required>
+    <comment>Type of storage backend: s3, gcs, azure, spaces, local</comment>
+    <html>
+      <type>Select</type>
+      <label>Storage Type</label>
+    </html>
+    <pseudoconstant>
+      <callback>CRM_Filestorage_BAO_FileStorage::getStorageTypes</callback>
+    </pseudoconstant>
+    <add>1.0</add>
+  </field>
+
+  <!-- Configuration Name -->
+  <field>
+    <name>config_name</name>
+    <title>Configuration Name</title>
+    <type>varchar</type>
+    <length>64</length>
+    <required>true</required>
+    <comment>Friendly name for this configuration</comment>
+    <html>
+      <type>Text</type>
+      <label>Name</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Configuration Data -->
+  <field>
+    <name>config_data</name>
+    <title>Configuration Data</title>
+    <type>text</type>
+    <required>true</required>
+    <comment>JSON configuration: credentials, bucket, region, etc.</comment>
+    <html>
+      <type>TextArea</type>
+      <rows>10</rows>
+      <cols>60</cols>
+    </html>
+    <serialize>JSON</serialize>
+    <add>1.0</add>
+  </field>
+
+  <!-- Is Active -->
+  <field>
+    <name>is_active</name>
+    <title>Is Active</title>
+    <type>boolean</type>
+    <default>1</default>
+    <required>true</required>
+    <comment>Is this configuration active?</comment>
+    <html>
+      <type>CheckBox</type>
+      <label>Active</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Is Default -->
+  <field>
+    <name>is_default</name>
+    <title>Is Default</title>
+    <type>boolean</type>
+    <default>0</default>
+    <required>true</required>
+    <comment>Is this the default storage for new files?</comment>
+    <html>
+      <type>CheckBox</type>
+      <label>Default</label>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- File Type Rules -->
+  <field>
+    <name>file_type_rules</name>
+    <title>File Type Rules</title>
+    <type>text</type>
+    <comment>JSON rules for which file types use this storage</comment>
+    <html>
+      <type>TextArea</type>
+      <rows>5</rows>
+      <cols>60</cols>
+    </html>
+    <serialize>JSON</serialize>
+    <add>1.0</add>
+  </field>
+
+  <!-- Created Date -->
+  <field>
+    <name>created_date</name>
+    <title>Created Date</title>
+    <type>datetime</type>
+    <required>true</required>
+    <default>CURRENT_TIMESTAMP</default>
+    <comment>When this configuration was created</comment>
+    <html>
+      <type>Select Date</type>
+      <formatType>activityDateTime</formatType>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Modified Date -->
+  <field>
+    <name>modified_date</name>
+    <title>Modified Date</title>
+    <type>timestamp</type>
+    <required>false</required>
+    <default>CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</default>
+    <comment>When this configuration was last modified</comment>
+    <html>
+      <type>Select Date</type>
+      <formatType>activityDateTime</formatType>
+    </html>
+    <add>1.0</add>
+  </field>
+
+  <!-- Indexes -->
+  <index>
+    <name>unique_config_name</name>
+    <fieldName>config_name</fieldName>
+    <unique>true</unique>
+    <add>1.0</add>
+  </index>
+
+  <index>
+    <name>idx_storage_type</name>
+    <fieldName>storage_type</fieldName>
+    <add>1.0</add>
+  </index>
+
+  <index>
+    <name>idx_is_active</name>
+    <fieldName>is_active</fieldName>
+    <add>1.0</add>
+  </index>
+
+  <index>
+    <name>idx_is_default</name>
+    <fieldName>is_default</fieldName>
+    <add>1.0</add>
+  </index>
+
+</table>
